@@ -122,12 +122,12 @@ public class MainActivity extends AppCompatActivity {
             selectedPlayer = 2;
             p2name.setTypeface(null, Typeface.BOLD);
             p1name.setTypeface(null, Typeface.NORMAL);
-            Toast.makeText(this,"Active player: " + selectedPlayer, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Active player: " + p2name.getText(), Toast.LENGTH_SHORT).show();
         } else {
             selectedPlayer = 1;
             p2name.setTypeface(null, Typeface.NORMAL);
             p1name.setTypeface(null, Typeface.BOLD);
-            Toast.makeText(this,"Active player: " + selectedPlayer, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Active player: " + p1name.getText(), Toast.LENGTH_SHORT).show();
         }
     }
 
