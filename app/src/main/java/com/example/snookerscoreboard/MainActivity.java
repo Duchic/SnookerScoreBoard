@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -40,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     Button faul6;
     Button faul7;
     Button changePlayer;
+    Player p1 = new Player();
+    Player p2 = new Player();
+    int redCount = 15;
 
     private int selectedPlayer = 1;
 
@@ -95,9 +100,66 @@ public class MainActivity extends AppCompatActivity {
         faul5.setOnClickListener(view -> faul(Fauls.FAUL5.getValue()));
         faul6.setOnClickListener(view -> faul(Fauls.FAUL6.getValue()));
         faul7.setOnClickListener(view -> faul(Fauls.FAUL7.getValue()));
+        editTextListeners();
+    }
+
+    private void editTextListeners() {
+        p1name.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                p1.setName(p1name.getText().toString());
+            }
+        });
+
+        p2name.addTextChangedListener(new TextWatcher() {
+
+
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                p2.setName(p2name.getText().toString());
+            }
+        });
     }
 
     private void pot(int points) {
+        if (selectedPlayer == 1) {
+            p1.setPoints(p1.getPoints() + points);
+            p1.setBreakPoints(p1.getBreakPoints() + points);
+            p1break.setText(p1.getBreakPoints());
+            p1points.setText(p1.getPoints());
+            changeAhead();
+        } else {
+            p2.setPoints(p2.getPoints() + points);
+            p2.setBreakPoints(p2.getBreakPoints() + points);
+            p2break.setText(p2.getBreakPoints());
+            p2points.setText(p2.getPoints());
+            changeAhead();
+        }
+
+        if (points == 1){
+            redCount--;
+            changeRemaining();
+        }
 
     }
 
@@ -105,19 +167,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void changeRemaining(int points) {
+    private void changeRemaining() {
+        remaining.setText((redCount * 8) + 27);
+    }
+
+    private void changeAhead() {
+        if (p1.getPoints() - p2.getPoints() > 0){
+            ahead.setText(p1.getPoints() - p2.getPoints());
+        } else {
+            ahead.setText(p2.getPoints() - p1.getPoints());
+        }
+        if (p1.getPoints() - p2.getPoints() == 0){
+            ahead.setText(0);
+        }
+    }
+
+    private void changePossiblePoints() { //az jako posledni
 
     }
 
-    private void changeAhead(int p1, int p2) {
-
-    }
-
-    private void changePossiblePoints() {
-
-    }
-
-    private void changeActivePlayer(){
+    private void changeActivePlayer(){ //hotovo
         if (selectedPlayer == 1){
             selectedPlayer = 2;
             p2name.setTypeface(null, Typeface.BOLD);
