@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -145,14 +146,14 @@ public class MainActivity extends AppCompatActivity {
         if (selectedPlayer == 1) {
             p1.setPoints(p1.getPoints() + points);
             p1.setBreakPoints(p1.getBreakPoints() + points);
-            p1break.setText(p1.getBreakPoints());
-            p1points.setText(p1.getPoints());
+            p1break.setText(p1.getBreakPoints()+"");
+            p1points.setText(p1.getPoints()+"");
             changeAhead();
         } else {
             p2.setPoints(p2.getPoints() + points);
             p2.setBreakPoints(p2.getBreakPoints() + points);
-            p2break.setText(p2.getBreakPoints());
-            p2points.setText(p2.getPoints());
+            p2break.setText(p2.getBreakPoints()+"");
+            p2points.setText(p2.getPoints()+"");
             changeAhead();
         }
 
@@ -163,22 +164,22 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void faul(int points) {
+    private void faul(int points) { //TODO
 
     }
 
     private void changeRemaining() {
-        remaining.setText((redCount * 8) + 27);
+        remaining.setText(((redCount * 8) + 27)+"");
     }
 
     private void changeAhead() {
         if (p1.getPoints() - p2.getPoints() > 0){
-            ahead.setText(p1.getPoints() - p2.getPoints());
+            ahead.setText((p1.getPoints() - p2.getPoints())+"");
         } else {
-            ahead.setText(p2.getPoints() - p1.getPoints());
+            ahead.setText((p2.getPoints() - p1.getPoints())+"");
         }
         if (p1.getPoints() - p2.getPoints() == 0){
-            ahead.setText(0);
+            ahead.setText(0+"");
         }
     }
 
@@ -187,6 +188,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeActivePlayer(){ //hotovo
+        p1.setBreakPoints(0);
+        p2.setBreakPoints(0);
+        p1break.setText(p1.getBreakPoints()+"");
+        p2break.setText(p2.getBreakPoints()+"");
         if (selectedPlayer == 1){
             selectedPlayer = 2;
             p2name.setTypeface(null, Typeface.BOLD);
