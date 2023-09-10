@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     TextView possible;
     TextView ahead;
     TextView remaining;
+    TextView reds;
 
     TextView p1points;
     TextView p1break;
@@ -60,6 +61,7 @@ public class MainActivity extends AppCompatActivity {
         possible = findViewById(R.id.possiblePoints);
         ahead = findViewById(R.id.ahead);
         remaining = findViewById(R.id.remaining);
+        reds = findViewById(R.id.reds);
 
 
         p1points = findViewById(R.id.p1points);
@@ -160,6 +162,7 @@ public class MainActivity extends AppCompatActivity {
         if (points == 1){
             redCount--;
             changeRemaining();
+            changePossiblePoints();
         }
 
     }
@@ -173,18 +176,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeAhead() {
-        if (p1.getPoints() - p2.getPoints() > 0){
-            ahead.setText((p1.getPoints() - p2.getPoints())+"");
-        } else {
-            ahead.setText((p2.getPoints() - p1.getPoints())+"");
-        }
         if (p1.getPoints() - p2.getPoints() == 0){
             ahead.setText(0+"");
+        }
+        if (p1.getPoints() - p2.getPoints() > 0){
+            ahead.setText((p1.getPoints() - p2.getPoints())+"");
+        }
+        if (p2.getPoints() - p1.getPoints() > 0){
+            ahead.setText((p2.getPoints() - p1.getPoints())+"");
         }
     }
 
     private void changePossiblePoints() { //az jako posledni
 
+    }
+
+    private void changeNumberOfReds() {
+        reds.setText("" + redCount);
     }
 
     private void changeActivePlayer(){ //hotovo

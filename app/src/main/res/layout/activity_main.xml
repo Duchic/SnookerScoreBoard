@@ -31,7 +31,7 @@
         android:id="@+id/Tahead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Ahead"
         app:layout_constraintStart_toEndOf="@+id/TpossiblePoints"
@@ -41,7 +41,7 @@
         android:id="@+id/ahead"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="76dp"
+        android:layout_marginStart="50dp"
         android:layout_marginTop="16dp"
         android:text="0"
         android:textSize="30sp"
@@ -52,7 +52,7 @@
         android:id="@+id/Tremaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="8dp"
         android:text="Remaining"
         app:layout_constraintStart_toEndOf="@+id/Tahead"
@@ -62,7 +62,7 @@
         android:id="@+id/remaining"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
+        android:layout_marginStart="40dp"
         android:layout_marginTop="16dp"
         android:text="147"
         android:textSize="30sp"
@@ -300,5 +300,26 @@
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/Treds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Reds"
+        app:layout_constraintStart_toEndOf="@+id/Tremaining"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/reds"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="15"
+        android:textSize="30sp"
+        app:layout_constraintStart_toEndOf="@+id/remaining"
+        app:layout_constraintTop_toBottomOf="@+id/Treds" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
