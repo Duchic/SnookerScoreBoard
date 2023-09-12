@@ -168,8 +168,24 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void faul(int points) { //TODO
-
+    private void faul(int points) {
+        if (selectedPlayer == 1) {
+            p1.setBreakPoints(0);
+            p1break.setText("" + p1.getBreakPoints());
+            p2.setPoints(p2.getPoints() + points);
+            p2points.setText("" + p2.getPoints());
+            changeAhead();
+            changeRemaining();
+            changePossiblePoints();
+        } else {
+            p2.setBreakPoints(0);
+            p2break.setText("" + p2.getBreakPoints());
+            p1.setPoints(p2.getPoints() + points);
+            p1points.setText("" + p1.getPoints());
+            changeAhead();
+            changeRemaining();
+            changePossiblePoints();
+        }
     }
 
     private void changeRemaining() {
@@ -188,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void changePossiblePoints() { //az jako posledni
+    private void changePossiblePoints() { //TODO
 
     }
 
@@ -196,7 +212,7 @@ public class MainActivity extends AppCompatActivity {
         reds.setText("" + redCount);
     }
 
-    private void changeActivePlayer(){ //hotovo
+    private void changeActivePlayer(){
         p1.setBreakPoints(0);
         p2.setBreakPoints(0);
         p1break.setText(p1.getBreakPoints()+"");
