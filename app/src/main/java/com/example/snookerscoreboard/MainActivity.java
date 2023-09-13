@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
     TextView ahead;
     TextView remaining;
     TextView reds;
+    Button restart;
 
     TextView p1points;
     TextView p1break;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         ahead = findViewById(R.id.ahead);
         remaining = findViewById(R.id.remaining);
         reds = findViewById(R.id.reds);
-
+        restart = findViewById(R.id.restart);
 
         p1points = findViewById(R.id.p1points);
         p1break = findViewById(R.id.p1break);
@@ -103,7 +104,24 @@ public class MainActivity extends AppCompatActivity {
         faul5.setOnClickListener(view -> faul(Fauls.FAUL5.getValue()));
         faul6.setOnClickListener(view -> faul(Fauls.FAUL6.getValue()));
         faul7.setOnClickListener(view -> faul(Fauls.FAUL7.getValue()));
+        restart.setOnClickListener(view -> restartGame());
         editTextListeners();
+    }
+
+    private void restartGame() {
+        redCount = 15;
+        possible.setText("" + 0);
+        ahead.setText("" + 0);
+        remaining.setText("" + 147);
+        reds.setText(redCount);
+        p1.setPoints(0);
+        p1.setBreakPoints(0);
+        p1points.setText(p1.getPoints());
+        p1break.setText(p1.getBreakPoints());
+        p2.setPoints(0);
+        p2.setBreakPoints(0);
+        p2points.setText(p2.getPoints());
+        p2break.setText(p2.getBreakPoints());
     }
 
     private void editTextListeners() {
@@ -151,19 +169,25 @@ public class MainActivity extends AppCompatActivity {
             p1break.setText(p1.getBreakPoints()+"");
             p1points.setText(p1.getPoints()+"");
             changeAhead();
+            changeRemaining(points);
         } else {
             p2.setPoints(p2.getPoints() + points);
             p2.setBreakPoints(p2.getBreakPoints() + points);
             p2break.setText(p2.getBreakPoints()+"");
             p2points.setText(p2.getPoints()+"");
             changeAhead();
+            changeRemaining(points);
         }
 
         if (points == 1){
             redCount--;
-            changeRemaining();
+            changeRemaining(points);
             changePossiblePoints();
             changeNumberOfReds();
+        }
+
+        if (redCount < 1) {
+            setRedButtonDisabledEnabled(false);
         }
 
     }
@@ -175,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
             p2.setPoints(p2.getPoints() + points);
             p2points.setText("" + p2.getPoints());
             changeAhead();
-            changeRemaining();
+            changeRemaining(points);
             changePossiblePoints();
         } else {
             p2.setBreakPoints(0);
@@ -183,13 +207,17 @@ public class MainActivity extends AppCompatActivity {
             p1.setPoints(p2.getPoints() + points);
             p1points.setText("" + p1.getPoints());
             changeAhead();
-            changeRemaining();
+            changeRemaining(points);
             changePossiblePoints();
         }
     }
 
-    private void changeRemaining() {
-        remaining.setText(((redCount * 8) + 27)+"");
+    private void changeRemaining(int points) {
+        if (redCount == 0){
+            remaining.setText("" + (27 - points));
+        } else {
+            remaining.setText(((redCount * 8) + 27)+"");
+        }
     }
 
     private void changeAhead() {
@@ -228,6 +256,10 @@ public class MainActivity extends AppCompatActivity {
             p1name.setTypeface(null, Typeface.BOLD);
             Toast.makeText(this,"Active player: " + p1name.getText(), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void setRedButtonDisabledEnabled(boolean status){
+        red.setEnabled(status);
     }
 
     public TextView getP1points() {
