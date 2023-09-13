@@ -113,15 +113,15 @@ public class MainActivity extends AppCompatActivity {
         possible.setText("" + 0);
         ahead.setText("" + 0);
         remaining.setText("" + 147);
-        reds.setText(redCount);
+        reds.setText(""+redCount);
         p1.setPoints(0);
         p1.setBreakPoints(0);
-        p1points.setText(p1.getPoints());
-        p1break.setText(p1.getBreakPoints());
+        p1points.setText(""+p1.getPoints());
+        p1break.setText(""+p1.getBreakPoints());
         p2.setPoints(0);
         p2.setBreakPoints(0);
-        p2points.setText(p2.getPoints());
-        p2break.setText(p2.getBreakPoints());
+        p2points.setText(""+p2.getPoints());
+        p2break.setText(""+p2.getBreakPoints());
     }
 
     private void editTextListeners() {
