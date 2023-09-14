@@ -35,6 +35,12 @@ public class MainActivity extends AppCompatActivity {
     Button blue;
     Button brown;
     Button green;
+    int yellowCount;
+    int greenCount;
+    int brownCount;
+    int blueCount;
+    int pinkCount;
+    int blackCount;
 
 
     Button yellow;
@@ -190,6 +196,27 @@ public class MainActivity extends AppCompatActivity {
             setRedButtonDisabledEnabled(false);
         }
 
+        switch (points) {
+            case 2:
+                yellowCount++;
+                break;
+            case 3:
+                greenCount++;
+                break;
+            case 4:
+                brownCount++;
+                break;
+            case 5:
+                blueCount++;
+                break;
+            case 6:
+                pinkCount++;
+                break;
+            case 7:
+                blackCount++;
+                break;
+        }
+
     }
 
     private void faul(int points) {
@@ -233,7 +260,16 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changePossiblePoints() { //TODO
-
+      int possiblePoints = 27 + (redCount * 8);
+      int pottedRed = 15 - redCount;
+      int yellow = yellowCount * 2;
+      int green = greenCount * 3;
+      int brown = brownCount * 4;
+      int blue = blueCount * 5;
+      int pink = pinkCount * 6;
+      int black = blackCount * 7;
+      possiblePoints = possiblePoints + yellow + green + brown + blue + pink + black;
+      possible.setText("" + possiblePoints);
     }
 
     private void changeNumberOfReds() {
