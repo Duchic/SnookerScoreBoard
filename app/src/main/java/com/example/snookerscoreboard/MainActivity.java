@@ -176,6 +176,7 @@ public class MainActivity extends AppCompatActivity {
             p1points.setText(p1.getPoints()+"");
             changeAhead();
             changeRemaining(points);
+            changePossiblePoints();
         } else {
             p2.setPoints(p2.getPoints() + points);
             p2.setBreakPoints(p2.getBreakPoints() + points);
@@ -183,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
             p2points.setText(p2.getPoints()+"");
             changeAhead();
             changeRemaining(points);
+            changePossiblePoints();
         }
 
         if (points == 1){
