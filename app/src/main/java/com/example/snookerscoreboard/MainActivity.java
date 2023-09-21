@@ -262,16 +262,30 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changePossiblePoints() { //TODO
-      int possiblePoints = 27 + (redCount * 8);
+      int coloursEnd = 27;
+      int pottedPoints = 0;
       int pottedRed = 15 - redCount;
-      int yellow = yellowCount * 2;
-      int green = greenCount * 3;
-      int brown = brownCount * 4;
-      int blue = blueCount * 5;
-      int pink = pinkCount * 6;
-      int black = blackCount * 7;
-      possiblePoints = possiblePoints + yellow + green + brown + blue + pink + black;
-      possible.setText("" + possiblePoints);
+      int maxPointsWithBlack = (redCount * Balls.BLACK.getValue());
+      if (blackCount > 0){
+          pottedPoints = pottedPoints + ((Balls.BLACK.getValue() * blackCount) + blackCount);
+      }
+      if (pinkCount > 0){
+          pottedPoints = pottedPoints + ((Balls.PINK.getValue() * pinkCount) + pinkCount);
+      }
+      if (blueCount > 0){
+          pottedPoints = pottedPoints + ((Balls.BLUE.getValue() * blueCount) + blueCount);
+      }
+      if (brownCount > 0){
+          pottedPoints = pottedPoints + ((Balls.BROWN.getValue() * brownCount) + brownCount);
+      }
+      if (greenCount > 0){
+          pottedPoints = pottedPoints + ((Balls.GREEN.getValue() * greenCount) + greenCount);
+      }
+      if (yellowCount > 0){
+          pottedPoints = pottedPoints + ((Balls.YELLOW.getValue() * yellowCount) + yellowCount);
+      }
+      pottedPoints = pottedPoints + coloursEnd;
+      int possiblePoints = pottedPoints + maxPointsWithBlack;
     }
 
     private void changeNumberOfReds() {
@@ -288,12 +302,23 @@ public class MainActivity extends AppCompatActivity {
             p2name.setTypeface(null, Typeface.BOLD);
             p1name.setTypeface(null, Typeface.NORMAL);
             Toast.makeText(this,"Active player: " + p2name.getText(), Toast.LENGTH_SHORT).show();
+            setPottedColorBallsCountToZero();
         } else {
             selectedPlayer = 1;
             p2name.setTypeface(null, Typeface.NORMAL);
             p1name.setTypeface(null, Typeface.BOLD);
             Toast.makeText(this,"Active player: " + p1name.getText(), Toast.LENGTH_SHORT).show();
+            setPottedColorBallsCountToZero();
         }
+    }
+
+    private void setPottedColorBallsCountToZero() {
+        blackCount = 0;
+        pinkCount = 0;
+        blueCount = 0;
+        brownCount = 0;
+        greenCount = 0;
+        yellowCount = 0;
     }
 
     private void setRedButtonDisabledEnabled(boolean status){
