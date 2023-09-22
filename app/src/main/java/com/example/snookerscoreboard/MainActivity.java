@@ -2,6 +2,7 @@ package com.example.snookerscoreboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
@@ -192,6 +193,7 @@ public class MainActivity extends AppCompatActivity {
             changeRemaining(points);
             changePossiblePoints();
             changeNumberOfReds();
+            disableBalls(points);
         }
 
         if (redCount < 1) {
@@ -201,24 +203,64 @@ public class MainActivity extends AppCompatActivity {
         switch (points) {
             case 2:
                 yellowCount++;
+                disableBalls(points);
                 break;
             case 3:
                 greenCount++;
+                disableBalls(points);
                 break;
             case 4:
                 brownCount++;
+                disableBalls(points);
                 break;
             case 5:
                 blueCount++;
+                disableBalls(points);
                 break;
             case 6:
                 pinkCount++;
+                disableBalls(points);
                 break;
             case 7:
                 blackCount++;
+                disableBalls(points);
                 break;
         }
 
+    }
+
+    private void disableBalls(int points) {
+        if (points == 1) {
+            red.setBackgroundColor(Color.GRAY);
+            red.setEnabled(false);
+            black.setBackgroundColor(Color.parseColor("#000000"));
+            black.setEnabled(true);
+            pink.setBackgroundColor(Color.parseColor("#e01f72"));
+            pink.setEnabled(true);
+            blue.setBackgroundColor(Color.parseColor("#134a8d"));
+            blue.setEnabled(true);
+            brown.setBackgroundColor(Color.parseColor("#562e19"));
+            brown.setEnabled(true);
+            green.setBackgroundColor(Color.parseColor("#2b4119"));
+            green.setEnabled(true);
+            yellow.setBackgroundColor(Color.parseColor("#ffb100"));
+            yellow.setEnabled(true);
+        } else {
+            red.setBackgroundColor(Color.parseColor("#FF050F"));
+            red.setEnabled(true);
+            black.setBackgroundColor(Color.GRAY);
+            black.setEnabled(false);
+            pink.setBackgroundColor(Color.GRAY);
+            pink.setEnabled(false);
+            blue.setBackgroundColor(Color.GRAY);
+            blue.setEnabled(false);
+            brown.setBackgroundColor(Color.GRAY);
+            brown.setEnabled(false);
+            green.setBackgroundColor(Color.GRAY);
+            green.setEnabled(false);
+            yellow.setBackgroundColor(Color.GRAY);
+            yellow.setEnabled(false);
+        }
     }
 
     private void faul(int points) {
