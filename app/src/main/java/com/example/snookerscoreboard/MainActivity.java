@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
         faul7 = findViewById(R.id.faul7);
         changePlayer = findViewById(R.id.switcher);
         p1name.setTypeface(null, Typeface.BOLD);
+        disableBalls(1000); //aby se nastavilo enable jen red ball
         setListeners();
     }
 
@@ -117,7 +118,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void restartGame() {
         redCount = 15;
-        possible.setText("" + 0);
+        possible.setText("" + 147);
         ahead.setText("" + 0);
         remaining.setText("" + 147);
         reds.setText(""+redCount);
@@ -129,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         p2.setBreakPoints(0);
         p2points.setText(""+p2.getPoints());
         p2break.setText(""+p2.getBreakPoints());
+        disableBalls(1000); //aby se nastavilo enable jen red ball
     }
 
     private void editTextListeners() {
@@ -303,10 +305,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void changePossiblePoints() { //TODO
+    private void changePossiblePoints() { //funguje spatne
       int coloursEnd = 27;
       int pottedPoints = 0;
-      int pottedRed = 15 - redCount;
       int maxPointsWithBlack = (redCount * Balls.BLACK.getValue());
       if (blackCount > 0){
           pottedPoints = pottedPoints + ((Balls.BLACK.getValue() * blackCount) + blackCount);
@@ -328,6 +329,7 @@ public class MainActivity extends AppCompatActivity {
       }
       pottedPoints = pottedPoints + coloursEnd;
       int possiblePoints = pottedPoints + maxPointsWithBlack;
+      possible.setText("" + possiblePoints);
     }
 
     private void changeNumberOfReds() {
@@ -345,12 +347,14 @@ public class MainActivity extends AppCompatActivity {
             p1name.setTypeface(null, Typeface.NORMAL);
             Toast.makeText(this,"Active player: " + p2name.getText(), Toast.LENGTH_SHORT).show();
             setPottedColorBallsCountToZero();
+            disableBalls(1000);
         } else {
             selectedPlayer = 1;
             p2name.setTypeface(null, Typeface.NORMAL);
             p1name.setTypeface(null, Typeface.BOLD);
             Toast.makeText(this,"Active player: " + p1name.getText(), Toast.LENGTH_SHORT).show();
             setPottedColorBallsCountToZero();
+            disableBalls(1000);
         }
     }
 
