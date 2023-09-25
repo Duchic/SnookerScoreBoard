@@ -286,7 +286,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changeRemaining(int points) {
-        if (redCount == 0){
+        if (redCount == 0 & points == 1) {
+            remaining.setText("" + (27));
+        } else if (redCount == 0 & points != 1) {
             remaining.setText("" + (27 - points));
         } else {
             remaining.setText(((redCount * 8) + 27)+"");
@@ -369,6 +371,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setRedButtonDisabledEnabled(boolean status){
         red.setEnabled(status);
+        red.setBackgroundColor(Color.GRAY);
     }
 
     public TextView getP1points() {
