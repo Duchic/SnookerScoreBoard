@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     Player p1 = new Player();
     Player p2 = new Player();
     int redCount = 15;
+    private Player selected = p1;
 
     private int selectedPlayer = 1;
 
@@ -231,6 +232,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setPottedBallsCount(int selectedPlayer, int points) {
+        if (selectedPlayer == 1){
+            if (points == 1){
+                p1.setPottedRed(p1.getPottedRed() + 1);
+            } //TODO - vsechny koule + hrac2 + volani metody na prislusnych mistech + vyzkouset funkcnost
+        }
+    }
+
     private void disableBalls(int points) {
         if (points == 1) {
             red.setBackgroundColor(Color.GRAY);
@@ -308,30 +317,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void changePossiblePoints() { //funguje spatne
-      int coloursEnd = 27;
-      int pottedPoints = 0;
-      int maxPointsWithBlack = (redCount * Balls.BLACK.getValue());
-      if (blackCount > 0){
-          pottedPoints = pottedPoints + ((Balls.BLACK.getValue() * blackCount) + blackCount);
-      }
-      if (pinkCount > 0){
-          pottedPoints = pottedPoints + ((Balls.PINK.getValue() * pinkCount) + pinkCount);
-      }
-      if (blueCount > 0){
-          pottedPoints = pottedPoints + ((Balls.BLUE.getValue() * blueCount) + blueCount);
-      }
-      if (brownCount > 0){
-          pottedPoints = pottedPoints + ((Balls.BROWN.getValue() * brownCount) + brownCount);
-      }
-      if (greenCount > 0){
-          pottedPoints = pottedPoints + ((Balls.GREEN.getValue() * greenCount) + greenCount);
-      }
-      if (yellowCount > 0){
-          pottedPoints = pottedPoints + ((Balls.YELLOW.getValue() * yellowCount) + yellowCount);
-      }
-      pottedPoints = pottedPoints + coloursEnd;
-      int possiblePoints = pottedPoints + maxPointsWithBlack;
-      possible.setText("" + possiblePoints);
+        if (selectedPlayer == 1) {
+            if (blackCount > 0) {
+                int blackPoints = ((Balls.BLACK.getValue() + 1) * blackCount);
+            }
+            if (pinkCount > 0) {
+                int pinkPoints = ((Balls.PINK.getValue() + 1) * pinkCount);
+            }
+            if (blueCount > 0) {
+                int bluePoints = ((Balls.BLUE.getValue() + 1) * blueCount);
+            }
+            if (brownCount > 0) {
+                int brownPoints
+            }
+        }
     }
 
     private void changeNumberOfReds() {
